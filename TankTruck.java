@@ -17,12 +17,13 @@ public class TankTruck {
     }
     /**
      * Algorithm:
-     * 1. Calculate the radius of the tanker
-     * 2. Square the radius
-     * 3. Square the height
-     * 4. Calculate the length
-     * 5. Calculates the remaining volume in the tank
-     * 6. Returns the result
+     * 1. Declare double radius equivalent to the radius,divide the diameter by 2
+     * 2. Declare double radiusSquared equals to the value of the radius squared
+     * 3. Declare double heightSquared equivalent to the height squared
+     * 4. Declare double length equivalent to the maximum volume of the tank divided by area of the cylinder top
+     * 5. Declare double equivalent answer equivalent to the computed reamining value
+     * 6. Declare int result as answer
+     * 7. Return result
      *@ param
      **/
     public static int tankVol(int h, int d, int vt) {
