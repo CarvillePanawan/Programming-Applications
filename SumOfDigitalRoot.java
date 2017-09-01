@@ -1,4 +1,4 @@
-public class DRoot {
+public class SumOfDigitalRoot {
   /*
    *6 kyu Sum of digit/digital roots
    *A digital root is the recursive sum of all the digits in a number. Given n, take the sum of the digits of n. If that value has two digits, continue reducing in this way until a single-digit number is produced. This is only applicable to the natural numbers.
@@ -28,7 +28,7 @@ public class DRoot {
    *return sum
    *@param
    */
-  public static int digital_root(int number) {
+  public static int digital_root_sum(int number) {
     int sum=0;
     while (number>9){
       sum = 0;
