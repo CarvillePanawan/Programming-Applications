@@ -1,0 +1,36 @@
+public class BitCounting {
+	
+	/**
+	 * <h1> Bit Counting</h1>
+	 * The AddCounting program implements an application that
+	 * converts an integer number to a binary string
+	 * counts all of the 1's in the binary and disregards the 0's
+	 * and prints the number of 1's in a binary
+	 *
+	 *@author Galising, Odessa 
+	 *@author Viray, Jhaylord
+	 *@version 1.0
+	 */
+	 
+	 
+    
+    /**
+    * This method converts the inter into binary
+    * counts all of the 1's in the binary
+    * prints the number of 1's
+    * @param n This is the number to be tested
+    * @return int This returns the number of 1's in a binary
+    */
+
+	public static int countBits(int n){
+  	return Integer.bitCount(n);
+	}
+	
+	
+	public static void main(String[]args){
+		BitCounting s= new BitCounting();
+		s.countBits(1234);
+		
+	}
+	
+}
