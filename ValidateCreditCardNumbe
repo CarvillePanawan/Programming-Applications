@@ -1,0 +1,35 @@
+	/**
+	 * Determines whether a given String of length 16 is a valid credit car number or not.
+	 * 
+	 * Algorithm:
+	 * 1. Instantiate an Integer array(nNum) of length cNum.length.
+	 * 2. Populate the Integer array(nNum) with each of the numeric value from the characters of cNum.
+	 * 3. Double every other digit starting from the second to the last digit, from right to left.
+	 *    3.1 Compare the doubled digit to 9.
+	 *        3.1.1 If it is greater than 9 then subtract it by 9 and store it into the array(nNum).
+	 *        3.1.2 If it is less than of equal to 9 then store directly to the array(nNum).
+	 * 4. Get the summation of each index in the array(nNum).
+	 * 5. Apply modulo to the summation.
+	 *    5.1 Compare the resulting number to 0.
+	 *        5.1.1. If it is equal to zero then return true.
+	 *        5.1.2. If it is not equal to zero then return false. 
+	 * 
+	 * @param cNum String representation of the credit card number.
+	 * @return The resulting truth value
+	 */
+	public Boolean validate(String cNum) {
+		int tSum = 0;
+		int[] nNum = new int[cNum.length()];
+		
+		for(int i=0; i<nNum.length; i++) {
+			nNum[i] = Character.getNumericValue(cNum.charAt(i));
+		}	
+		for(int j=nNum.length-2; j>=0; j-=2) {
+			nNum[j] = nNum[j]*2>9 ? nNum[j]*2-9 : nNum[j]*2;
+		}			
+		for(int k=0; k<nNum.length; k++) {
+			tSum += nNum[k];
+		}
+			
+		return ((tSum%10)==0);
+	}//validate
