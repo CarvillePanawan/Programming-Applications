@@ -1,5 +1,7 @@
 // import java.util.ArrayList;
 // it's so long, I know
+// fyi - on codewars, it works for the sample tests, but try to attempt, and it'll take too long
+// i'm too lazy to optimize it for now ANYWAY it doesn't matter
 
 /**
  * Solution for: 'Follow that spy' by adromil
@@ -67,6 +69,7 @@ public static String findRoutes(String[][] routes) {
 }
 
 /**
+ * For when the start of Route has been found.
  * Algorithm:
  *     1. Receives parameter values of newRoute and oldRoute
  *     2. Declare String[] variable temp4, boolean variable switchDone
