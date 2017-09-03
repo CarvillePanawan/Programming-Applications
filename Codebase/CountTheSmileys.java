@@ -8,6 +8,7 @@
  *	 3.1 Check each of the index if it contains the ff: ":" ";" "-" "~" ")" "D"
  *	 3.2 If yes, count + 1
  *
+ *@author Abiera, Gerichelle
  *@param  list of the array that will contain the strings to be counted
  *@return number of the smileys given in the array */
 import java.util.*;
