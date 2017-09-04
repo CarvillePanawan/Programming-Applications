@@ -1,51 +1,42 @@
 /*
-Solution for "Are we alternate?"
-Algorithm:
-    1. Creates an array of vowels
-    2. Declare boolean variables (vowelP, vowelC, isAlternating) 
-       vowelP = stands for vowel previous, checks if the first character of the string is in the array
-       vowelC = stands for vowel current, checks if the second character of the string is in the array
-       isAlternating = confirms if its an alternating vowel and consonant or consonant and vowel
-    3. Add a for loop to check each letter of the given string
-    4. Add another for loop inside the first for loop to check each indexes of the array
-        4.1 If the first character of the string is in the array
-        4.2 Then, vowelP is true
-        4.3 Also add an if statement to check if the second character of the string is in the array,.
-        4.3  Then, vowelC is true.
-    5. If Vowel previous and Vowel current are not equal, then it is alternating
-    6. Vowel previous and vowel current must be equal since the latter indicates that the
-       letter is a consonant and is not found in the array.
-      
-*/
-import java.util.*;
-public class AreWeAlternate {
-
-    public static boolean isAlt(String word) {
-        char [] vowels = {'a','e','i','o','u'};  
-     	boolean vowelP = false;
-     	boolean vowelC = false;
-     	boolean isAlternating=false;
-    	
-    	for(int x = 0; x <word.length()-1; x++){
-            for(int y = 0; y<vowels.length; y++){
-            	if(x==0 && word.charAt(x)==vowels[y]){
-            		vowelP = true;
-                    }
-            	if(word.charAt(x+1)==vowels[y]){
-            		vowelC = true;
-                    }
-           	}
-           	if(vowelP!=vowelC){
-           		isAlternating=true;
-                    }
-           	vowelP=vowelC;
-             }
+ *Solution for Are we alternate?
+ *Algorithm:
+ *1. Declare initial variables to hold for the truth values
+ *2. If the length of the word is even
+ *	2.1 Use the method pattern to check if the initial character is a vowel following a consonant per se
+ *	2.1 Use the method pattern to check if the initial character is a consonant following a vowel per se
+ *3. Otherwise, if odd, add vowels
+ *4. Add consonants if odd
+ *5. If the length of the string returns 1, return true
+ * */
+import java.util.regex.Pattern;
+public class Solution3 {	
+  public static boolean isAlt(String word) {
+	  boolean a = true;
+      boolean b = true;
         
-        return isAlternating;
+      if(word.length() % 2 == 0){
+       	a = Pattern.matches("([aeiou][bcdfghjklmnpqrstvwxz])+", word);
+        b = Pattern.matches("([bcdfghjklmnpqrstvwxz][aeiou])+", word);
+       }else{
+        a = Pattern.matches("([aeiou][bcdfghjklmnpqrstvwxz])+[aeiou]", word);
+        b = Pattern.matches("([bcdfghjklmnpqrstvwxz][aeiou])+[bcdfghjklmnpqrstvwxz]", word);
+        if(word.length() == 1){
+         a = Pattern.matches("[aeiou]", word);
+         b = Pattern.matches("[bcdfghjklmnpqrstvwxz]", word);
+        	}
+       }
+       
+       return a || b;
     }
 
     public static void main(String[]args){
-        AreWeAlternate  s = new AreWeAlternate();
-        System.out.println(s.isAlt("banana"));
-    }
-}
+        Solution3 s = new Solution3();
+        String[] test = {"abopuvlr","ihiseqog","tcc","avif","tezevaaf","osbizudef","exq","ufudelwod","uosun","juhueepip","eotuyif","ihootkuv","xetio","tede",
+					"itakasap","uyvovmav","avnapea","ezijedah","ehbucjtoh","aulipfaf","uvdogijer","imuv","xwiaduxg","zac"};
+		
+		for(int i = 0; i < test.length; i++){
+			System.out.println(test[i]+" "+s.isAlt(test[i]));
+				}
+    		}
+		}
