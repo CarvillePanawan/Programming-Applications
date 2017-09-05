@@ -1,7 +1,6 @@
 // import java.util.ArrayList;
 // it's so long, I know
-// fyi - on codewars, it works for the sample tests, but try to attempt, and it'll take too long
-// i'm too lazy to optimize it for now ANYWAY it doesn't matter
+// IT FINALLY WORKS
 
 /**
  * Solution for: 'Follow that spy' by adromil
@@ -39,6 +38,7 @@ public static String findRoutes(String[][] routes) {
 		oldRoute.remove(0);
 
 		try {
+			if (oldRoute.isEmpty()) { spyFollowed = true; }
 			while (!spyFollowed) {
 				for (int a=0; a<oldRoute.size(); a++) {
 					temp1 = oldRoute.get(a);
