@@ -1,0 +1,10 @@
+
+/**
+ * Solution for: Sequences and Series by BattleRattle
+ *
+ * @param n the number to be tested
+ * @return long the result of the tested number
+ */
+public static long getScore(long n) {
+	return (((n*(n+1)*50)/2));
+}
