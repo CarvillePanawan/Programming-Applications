@@ -1,1 +1,1 @@
-asovoajgodfosirthbjspkghl
+Test class directory
