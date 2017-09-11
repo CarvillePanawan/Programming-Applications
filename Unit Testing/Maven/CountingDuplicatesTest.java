@@ -29,7 +29,7 @@ public class CountingDuplicatesTest {
     }
     @Test
     public void abcdefghijklmnopqrstuvwxyzReturnsZero() {
-        assertEquals(1, CountingDuplicates.duplicateCount("abcdefghijklmnopqrstuvwxyz"));
+        assertEquals(0, CountingDuplicates.duplicateCount("abcdefghijklmnopqrstuvwxyz"));
     }
     
     
