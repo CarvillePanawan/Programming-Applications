@@ -1,0 +1,29 @@
+/* PROBLEM: AREWEALTERNATE? */
+     /*
+     *Algorithm:
+     *<ul>
+     *<li>1. Check the first character if its a vowel
+     *<li>2. Using a for loop check if every character is a vowel  
+     *</ul>
+     *@param word is the string to be checked
+     *@return boolean will tell if its alternate
+	**/
+    public static boolean isAlt(String word) 
+    {
+      boolean b = isVowel(word.charAt(0));
+  		for (int i = 1; i < word.length(); i++)
+      	{
+  			b = !b;
+  			if (b != isVowel(word.charAt(i))) 
+  			return false;
+  		}
+  		return true;	
+    }
+      static boolean isVowel(char ch) 
+    {
+	
+        
+        return "AEIOUaeiou".indexOf(ch) != -1; 
+        
+
+    }
