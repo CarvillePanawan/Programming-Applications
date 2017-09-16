@@ -1,0 +1,118 @@
+apply plugin: "jacoco"
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+	mavenCentral()
+}
+
+dependencies {
+    testCompile('junit:junit:4.12')
+    compile ('junit:junit:4.12') 
+}
+
+jacoco {
+    toolVersion = "0.7.6.201602180812"
+    reportsDir = file("$buildDir/reports/code coverage/customJacocoReportDir")
+}
+
+
+sourceSets { 
+  main { 
+     java { 
+        srcDir 'src'   
+		exclude '**/test/**'
+        }  
+     } 
+  test { 
+     java { 
+        srcDir 'test' 
+        }  
+     }
+}
+
+task doCompile (type: JavaCompile) {
+	source = sourceSets.main.java.srcDirs
+    classpath = sourceSets.main.compileClasspath
+    destinationDir = file("$rootDir/build/classes/java/main")
+	source = sourceSets.test.java.srcDirs
+    classpath = sourceSets.test.compileClasspath
+    destinationDir = file("$rootDir/build/classes/java/test")
+}
+
+task doJDoc (type: Javadoc) {
+	source = sourceSets.main.allJava
+	destinationDir = file("$buildDir/docs")
+}
+
+task doJarClass (type: Jar) {
+    dependsOn doCompile
+	classifier = 'classes'
+	from {file("$buildDir/classes/java/main")}
+	destinationDir = file("$rootDir/build/libs/classes")
+}
+
+task doJarDoc (type: Jar) {
+    dependsOn doJDoc
+	classifier = 'javadoc'
+	from {file("$buildDir/docs")}
+	destinationDir = file("$rootDir/build/libs/java doc")
+	
+}
+
+task doTest (type: Test) {
+    reports {
+        html {
+            enabled true
+        }
+        html.destination = file("$buildDir/test-results/unit testing")
+        junitXml.destination = file("$buildDir/test-results/test")
+    }
+    binResultsDir = file("$buildDir/test-results/test/binary")
+	jacoco {
+		destinationFile = file("$buildDir/resources/jacoco/doTest.exec")
+	}
+}
+
+jacocoTestReport {
+    reports {
+		html.enabled = true
+        csv.enabled = false
+        html.destination file("${buildDir}/test-results/jacoco")
+    }
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.5 
+            }
+        }
+
+        rule {
+            enabled = false
+            element = 'CLASS'
+            includes = ['org.gradle.*']
+
+            limit {
+                counter = 'LINE'
+                value = 'TOTALCOUNT'
+                maximum = 0.3
+            }
+        }
+    }
+}
+
+
+
+test {
+	jacoco{
+		append = true;
+		destinationFile = file("$buildDir/resources/jacoco/jacocoTest.exec")
+		classDumpDir = file("$buildDir/resources/jacoco/classpathdumps")
+	}
+	reports {
+		html.destination = file("$buildDir/test-results/unit testing")
+	}
+}
